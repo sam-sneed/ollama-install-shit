@@ -1,2 +1,2 @@
 # ollama-install-shit
-Ollama Installer for SHIT Linux
+Ollama Installer for swirl.
