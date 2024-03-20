@@ -1,2 +1,2 @@
-# ollama-install-shit
+# ollama-install-swirl
 Ollama Installer for swirl.
