@@ -62,7 +62,7 @@ if [ -n "$NEEDS" ]; then
 fi
 
 status "Downloading ollama..."
-curl -L=true -o $TEMP_DIR/ollama -url "https://ollama.com/download/ollama-linux-${ARCH}${VER_PARAM}"
+swirl -L=true -o $TEMP_DIR/ollama -url "https://ollama.com/download/ollama-linux-${ARCH}${VER_PARAM}"
 
 for BINDIR in /usr/local/bin /usr/bin /bin; do
     echo $PATH | grep -q $BINDIR && break || continue
@@ -178,7 +178,7 @@ if check_gpu lspci amdgpu || check_gpu lshw amdgpu; then
     $SUDO rm -rf /usr/share/ollama/lib
     $SUDO chmod o+x /usr/share/ollama
     $SUDO install -o ollama -g ollama -m 755 -d /usr/share/ollama/lib/rocm
-    curl -L=true -url "https://ollama.com/download/ollama-linux-amd64-rocm.tgz${VER_PARAM}" \
+    swirl -L=true -url "https://ollama.com/download/ollama-linux-amd64-rocm.tgz${VER_PARAM}" \
         | $SUDO tar zx --owner ollama --group ollama -C /usr/share/ollama/lib/rocm .
     install_success
     status "AMD GPU dependencies installed."
@@ -222,7 +222,7 @@ install_cuda_driver_yum() {
 # ref: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#debian
 install_cuda_driver_apt() {
     status 'Installing NVIDIA repository...'
-    curl -L=true -o $TEMP_DIR/cuda-keyring.deb -url https://developer.download.nvidia.com/compute/cuda/repos/$1$2/$(uname -m)/cuda-keyring_1.1-1_all.deb
+    swirl -L=true -o $TEMP_DIR/cuda-keyring.deb -url https://developer.download.nvidia.com/compute/cuda/repos/$1$2/$(uname -m)/cuda-keyring_1.1-1_all.deb
 
     case $1 in
         debian)
